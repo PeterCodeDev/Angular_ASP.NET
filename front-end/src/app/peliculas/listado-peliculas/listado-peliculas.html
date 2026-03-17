@@ -9,13 +9,13 @@
   <p>No hay peliculas para mostrar</p>
 </div>
 
-<div *ngIf = "peliculas && peliculas.length > 0">
+<ng-container *ngIf = "peliculas && peliculas.length > 0">
   <div *ngFor="let pelicula of peliculas; 
   let index = index" 
   class = "pelicula-contenedor">
     <div>
       Pelicula {{index}}: {{pelicula.titulo | lowercase}}
-    <button style="margin-left: 1rem;">Remove</button>
+    <button style="margin-left: 1rem;"(click)="remove(index)">Remove</button>
     </div>
     <div>
       {{pelicula.titulo | uppercase}}
@@ -27,4 +27,4 @@
       {{pelicula.fechaLanzamiento | date:"dd-MM-yy"}}
     </div>
   </div>
-</div>
+</ng-container>

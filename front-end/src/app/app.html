@@ -1,12 +1,19 @@
+<input type="file" style="display:none" #cargador>
+<button (click)="cargador.click">Cargar Archivo</button>
+
+
+
+
+
+
+
 
 
 <h1>En cines</h1>
-
 <app-listado-peliculas [peliculas]="peliculaEnCines"></app-listado-peliculas>
 
 
 <h1>Futuros estrenos</h1>
-
 <app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
 
 
