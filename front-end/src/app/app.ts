@@ -2,14 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal} from '@angular/core';
 import { ListadoPeliculas } from './peliculas/listado-peliculas/listado-peliculas';
 import { ListadoGenerico } from './utilidades/listado-generico/listado-generico';
+import { MaterialModule } from './material/material-module';
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
 import {NgModule} from '@angular/core'
-//import { RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports:[CommonModule, ListadoPeliculas, ListadoGenerico],
+  imports:[CommonModule, ListadoPeliculas, ListadoGenerico, MaterialModule],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -31,7 +33,7 @@ export class AppComponent implements OnInit{
     }, 2000);
 
   //Gif 2: Proximos Estrenos
-    setTimeout(() =>{
+    /*setTimeout(() =>{
       this.peliculasProximosEstrenos =[{
       titulo : 'Avengers Endgame',
     fechaLanzamiento: new Date(),
@@ -47,12 +49,12 @@ export class AppComponent implements OnInit{
     fechaLanzamiento: new Date('2016-11-14'),
     precio: 300.99
   }]
-    }, 2000);
+    }, 2000);*/
   }
   protected readonly title = signal('Este es el titulo que yo quiero');
 
   peliculaEnCines : any;
-  peliculasProximosEstrenos :any;
+  peliculasProximosEstrenos =[];
 
   manejarClick(){
     // Hacer lo que yo quiera
