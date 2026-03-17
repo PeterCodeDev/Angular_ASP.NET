@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal} from '@angular/core';
 import {NgModule} from '@angular/core'
 //import { RouterOutlet } from '@angular/router';
 
@@ -7,11 +7,20 @@ import {NgModule} from '@angular/core'
   selector: 'app-root',
   //imports: [RouterOutlet],
   imports:[CommonModule],
+  standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit{
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.peliculas =[]
+    }, 2000);
+  }
   protected readonly title = signal('Este es el titulo que yo quiero');
+
+  peliculas;
 
   manejarClick(){
     // Hacer lo que yo quiera
@@ -24,5 +33,6 @@ export class App {
     titulo : 'Spider-man',
     fechaLanzamiento: new Date(),
     precio: 1400.99
-  };
+  }
+  
 }
