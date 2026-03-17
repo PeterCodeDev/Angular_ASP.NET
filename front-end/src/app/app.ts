@@ -22,6 +22,7 @@ export class App {
 
   pelicula = {
     titulo : 'Spider-man',
-    fechaLanzamiento: new Date()
+    fechaLanzamiento: new Date(),
+    precio: 1400.99
   };
 }
