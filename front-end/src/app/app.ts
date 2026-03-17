@@ -70,5 +70,8 @@ export class AppComponent implements OnInit{
     fechaLanzamiento: new Date(),
     precio: 1400.99
   }
+  manejarRated(voto: number): void{
+    alert(voto);
+  }
   
 }

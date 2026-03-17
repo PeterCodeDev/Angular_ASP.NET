@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -14,8 +14,11 @@ export class Rating implements OnInit {
   maximoRating = 5;
   @Input()
   ratingSeleccionado = 0;
+  @Output()
+  rated: EventEmitter<number> = new EventEmitter<number>();
   maximoRatingArr: number[] = [];
   votado = false;
+  ratingAnterior;
 
   constructor(){}
 
@@ -29,7 +32,9 @@ export class Rating implements OnInit {
   }
 
   manejarMouseLeave(){
-    if(!this.votado){
+    if(this.ratingAnterior !== 0){
+      this.ratingSeleccionado = this.ratingAnterior;
+    }else{
       this.ratingSeleccionado = 0;
     }
   }
@@ -37,5 +42,7 @@ export class Rating implements OnInit {
   rate(index: number): void {
     this.ratingSeleccionado = index +1;
     this.votado = true;
+    this.ratingAnterior = this.ratingSeleccionado;
+    this.rated.emit(this.ratingSeleccionado);
   }
 }
