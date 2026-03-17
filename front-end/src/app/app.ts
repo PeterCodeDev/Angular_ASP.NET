@@ -6,12 +6,13 @@ import { MaterialModule } from './material/material-module';
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import {NgModule} from '@angular/core'
+import { Menu } from "./menu/menu";
 
 
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports:[CommonModule, ListadoPeliculas, ListadoGenerico, MaterialModule],
+  imports: [CommonModule, ListadoPeliculas, MaterialModule, Menu],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -21,6 +22,24 @@ export class AppComponent implements OnInit{
     //Gif 1: Peliculas en cines
     setTimeout(() => {
       this.peliculaEnCines =[{
+      titulo : 'Spider-man',
+    fechaLanzamiento: new Date(),
+    precio: 1400.99
+  },
+  {
+  titulo : 'Black Phanter',
+    fechaLanzamiento: new Date('2016-11-14'),
+    precio: 300.99
+  },{
+      titulo : 'Spider-man',
+    fechaLanzamiento: new Date(),
+    precio: 1400.99
+  },
+  {
+  titulo : 'Black Phanter',
+    fechaLanzamiento: new Date('2016-11-14'),
+    precio: 300.99
+  },{
       titulo : 'Spider-man',
     fechaLanzamiento: new Date(),
     precio: 1400.99
