@@ -8,8 +8,9 @@
   let index = index" 
   class = "pelicula-contenedor">
     <div>
-      Pelicula {{index}}: {{pelicula.titulo | lowercase}}
+      <h2>Pelicula {{index}}: {{pelicula.titulo | lowercase}}
     <button style="margin-left: 1rem;"(click)="remove(index)">Remove</button>
+      </h2>
     </div>
     <div>
       {{pelicula.titulo | uppercase}}

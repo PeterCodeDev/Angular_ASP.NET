@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon'
 import {NgModule} from '@angular/core'
 import { Menu } from "./menu/menu";
 import { Rating } from "./utilidades/rating/rating";
+/*import { CicloDeVida } from "./ciclo-de-vida/ciclo-de-vida";*/
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit{
     fechaLanzamiento: new Date('2016-11-14'),
     precio: 300.99
   }]
-    }, 2000);
+    }, 500);
 
   //Gif 2: Proximos Estrenos
     /*setTimeout(() =>{
@@ -53,10 +54,11 @@ export class AppComponent implements OnInit{
   }]
     }, 2000);*/
   }
-  protected readonly title = signal('Este es el titulo que yo quiero');
+ title = 'Este es el titulo que yo quiero'
 
   peliculaEnCines : any;
   peliculasProximosEstrenos =[];
+  ocultar = false;
 
   manejarClick(){
     // Hacer lo que yo quiera
