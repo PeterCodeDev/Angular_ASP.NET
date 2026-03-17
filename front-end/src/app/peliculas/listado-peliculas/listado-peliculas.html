@@ -1,16 +1,7 @@
-<h2>Listado de peliculas</h2>
 
-<div *ngIf="!peliculas"> 
-  <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"/>
-  <p>CARGANDO PELICULAS</p>
-</div>
-
-<div *ngIf="peliculas?.length === 0">
-  <p>No hay peliculas para mostrar</p>
-</div>
-
-<ng-container *ngIf = "peliculas && peliculas.length > 0">
-  <div *ngFor="let pelicula of peliculas; 
+<app-listado-generico [listado]="peliculas">
+    <ng-container contenido>
+<div *ngFor="let pelicula of peliculas; 
   let index = index" 
   class = "pelicula-contenedor">
     <div>
@@ -27,4 +18,6 @@
       {{pelicula.fechaLanzamiento | date:"dd-MM-yy"}}
     </div>
   </div>
-</ng-container>
+  </ng-container>
+</app-listado-generico>
+  

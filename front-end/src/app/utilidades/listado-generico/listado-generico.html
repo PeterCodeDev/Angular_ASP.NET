@@ -1,0 +1,14 @@
+<h2>Listado de peliculas</h2>
+
+<div *ngIf="!listado"> 
+  <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"/>
+  <p>CARGANDO PELICULAS</p>
+</div>
+
+<div *ngIf="listado && listado.length === 0">
+  <p>No hay peliculas para mostrar</p>
+</div>
+
+<ng-container *ngIf = "listado && listado.length > 0">
+  <ng-content select="[contenido]"></ng-content>
+</ng-container>

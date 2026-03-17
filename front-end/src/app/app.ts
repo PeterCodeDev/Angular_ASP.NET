@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal} from '@angular/core';
 import { ListadoPeliculas } from './peliculas/listado-peliculas/listado-peliculas';
+import { ListadoGenerico } from './utilidades/listado-generico/listado-generico';
 import {NgModule} from '@angular/core'
 //import { RouterOutlet } from '@angular/router';
 
@@ -8,14 +9,14 @@ import {NgModule} from '@angular/core'
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports:[CommonModule, ListadoPeliculas],
+  imports:[CommonModule, ListadoPeliculas, ListadoGenerico],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class AppComponent implements OnInit{
-
   ngOnInit(): void {
+    //Gif 1: Peliculas en cines
     setTimeout(() => {
       this.peliculaEnCines =[{
       titulo : 'Spider-man',
@@ -28,11 +29,10 @@ export class AppComponent implements OnInit{
     precio: 300.99
   }]
     }, 2000);
-  }
-  protected readonly title = signal('Este es el titulo que yo quiero');
 
-  peliculaEnCines;
-  peliculasProximosEstrenos = [{
+  //Gif 2: Proximos Estrenos
+    setTimeout(() =>{
+      this.peliculasProximosEstrenos =[{
       titulo : 'Avengers Endgame',
     fechaLanzamiento: new Date(),
     precio: 1400.99
@@ -47,6 +47,12 @@ export class AppComponent implements OnInit{
     fechaLanzamiento: new Date('2016-11-14'),
     precio: 300.99
   }]
+    }, 2000);
+  }
+  protected readonly title = signal('Este es el titulo que yo quiero');
+
+  peliculaEnCines : any;
+  peliculasProximosEstrenos :any;
 
   manejarClick(){
     // Hacer lo que yo quiera
