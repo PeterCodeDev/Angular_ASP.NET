@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ListadoGenerico } from "../../utilidades/listado-generico/listado-generico";
+import { MaterialModule } from '../../material/material-module';
 
 @Component({
   selector: 'app-listado-peliculas',
   standalone:true,
-  imports: [CommonModule, ListadoGenerico],
+  imports: [CommonModule, ListadoGenerico, MaterialModule],
   templateUrl: './listado-peliculas.html',
   styleUrl: './listado-peliculas.css',
 })

@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button'
 @NgModule({
   declarations: [],
   exports:[
-    MatToolbarModule
+    MatToolbarModule, MatButtonModule
   ],
   imports: [CommonModule],
 })
