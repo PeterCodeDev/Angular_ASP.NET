@@ -14,14 +14,16 @@
     </mat-form-field>
 
     <div>
-        <mat-checkbox formControlName="proximoEstrenos">Proximos estrenos</mat-checkbox>
+        <mat-checkbox formControlName="proximosEstrenos">Proximos estrenos</mat-checkbox>
     </div>
 
     <div>
         <mat-checkbox formControlName="enCines">En cines</mat-checkbox>
     </div>
 
-    <div>
+    <div class="contenedor-limpiar">
         <a mat-flat-button (click)="limpiar()" color="warn">Limpiar</a>
     </div>
 </form>
+
+<app-listado-peliculas [peliculas]="peliculas"></app-listado-peliculas>
