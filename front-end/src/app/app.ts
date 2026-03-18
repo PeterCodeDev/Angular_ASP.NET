@@ -8,14 +8,14 @@ import { MatIconModule } from '@angular/material/icon'
 import {NgModule} from '@angular/core'
 import { Menu } from "./menu/menu";
 import { Rating } from "./utilidades/rating/rating";
-import { RouterOutlet } from "../../node_modules/@angular/router/types/_router_module-chunk";
+import { RouterOutlet } from "@angular/router";
 /*import { CicloDeVida } from "./ciclo-de-vida/ciclo-de-vida";*/
 
 
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports: [CommonModule, ListadoPeliculas, MaterialModule, Menu, Rating, RouterOutlet],
+  imports: [CommonModule, ListadoPeliculas, MaterialModule, Menu, RouterOutlet],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'

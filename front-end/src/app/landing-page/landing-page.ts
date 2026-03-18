@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ListadoPeliculas } from '../peliculas/listado-peliculas/listado-peliculas';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [],
+  standalone:true,
+  imports: [ListadoPeliculas],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })
 export class LandingPage implements OnInit {
-  constructor(){}
   ngOnInit(): void {
     
     //Gif 1: Peliculas en cines
-    
       this.peliculaEnCines =[{
       titulo : 'Spider-man',
     fechaLanzamiento: new Date(),
@@ -24,7 +24,10 @@ export class LandingPage implements OnInit {
     precio: 300.99,
     poster:'https://tse3.mm.bing.net/th/id/OIP.tnzR4SNgzUnPCIB1fFa16QHaLH?pid=Api&P=0&h=180'
   }];
+
     }
+  peliculaEnCines : any;
+  peliculasProximosEstrenos =[];
 
   //Gif 2: Proximos Estrenos
     /*setTimeout(() =>{
@@ -44,15 +47,5 @@ export class LandingPage implements OnInit {
     precio: 300.99
   }]
     }, 2000);*/
-  
-
-  peliculaEnCines : any;
-  peliculasProximosEstrenos =[];
-
-  pelicula = {
-    titulo : 'Spider-man',
-    fechaLanzamiento: new Date(),
-    precio: 1400.99
-  }
 }
 
