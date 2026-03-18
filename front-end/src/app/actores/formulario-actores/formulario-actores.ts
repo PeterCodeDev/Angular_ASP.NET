@@ -4,11 +4,12 @@ import { MaterialModule } from "../../material/material-module";
 import { RouterLink } from "@angular/router";
 import { actorCreacionDTO, actorDTO } from '../actor';
 import { InputImg } from '../../utilidades/input-img/input-img';
+import { InputMarkdown } from '../../utilidades/input-markdown/input-markdown';
 
 @Component({
   selector: 'app-formulario-actores',
   standalone:true,
-  imports: [ReactiveFormsModule, MaterialModule, RouterLink, InputImg],
+  imports: [ReactiveFormsModule, MaterialModule, RouterLink, InputImg,InputMarkdown],
   templateUrl: './formulario-actores.html',
   styleUrl: './formulario-actores.css',
 })

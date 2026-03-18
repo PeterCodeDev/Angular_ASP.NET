@@ -10,11 +10,12 @@ import {MatSelectModule} from '@angular/material/select'
 import {MatDatepickerModule} from '@angular/material/datepicker'
 import {MatLineModule} from '@angular/material/core'
 import {MatNativeDateModule} from '@angular/material/core'
+import {MatTabsModule} from '@angular/material/tabs'
 
 @NgModule({
   declarations: [],
   exports:[
-    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule
+    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule
   ],
   imports: [CommonModule],
 })
