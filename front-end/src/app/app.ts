@@ -15,7 +15,7 @@ import { RouterOutlet } from "@angular/router";
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports: [CommonModule, ListadoPeliculas, MaterialModule, Menu, RouterOutlet],
+  imports: [CommonModule,MaterialModule, Menu, RouterOutlet],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
