@@ -3,45 +3,22 @@ import { FormBuilder, FormGroup,ReactiveFormsModule, Validators  } from '@angula
 import { Router, RouterLink } from '@angular/router'
 import { MaterialModule } from "../../material/material-module";
 import { primeraLetraMayuscula } from '../../utilidades/validadores/primeraLetraMayuscula';
+import { FormularioGenero } from "../formulario-genero/formulario-genero";
+import { generoCreacionDTO } from '../genero';
 
 @Component({
   selector: 'app-crear-genero',
   standalone:true,
-  imports: [ReactiveFormsModule, MaterialModule, RouterLink],
+  imports: [ReactiveFormsModule, MaterialModule, FormularioGenero],
   templateUrl: './crear-genero.html',
   styleUrl: './crear-genero.css',
 })
-export class CrearGenero implements OnInit{
-  constructor(private router: Router, private formBuilder : FormBuilder){}
+export class CrearGenero{
+  constructor(private router: Router){}
 
-  form: FormGroup;
-
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      nombre: ['', {
-        validators: [Validators.required, Validators.minLength(3),primeraLetraMayuscula()]
-      }]
-    });
-  }
-
-  guardarCambios(){
+  guardarCambios(genero: generoCreacionDTO){
     // - - - guardar los cambios
+    console.log(genero);
     this.router.navigate(['/generos']);
   }
-
-  obtenerErrorCampoNombre(){
-    var campo = this.form.get('nombre');
-    if (campo?.hasError('required')){
-      return 'El campo nombre es necesario';
-    }
-    if(campo.hasError('minlength')){
-      return 'La longuitud minima es de 3 caracteres';
-    }
-    if(campo?.hasError('primeraLetraMayuscula')){
-      return campo.getError('primeraLetraMayuscula').mensaje;
-    }
-    return '';
-  }
-
- 
 }
