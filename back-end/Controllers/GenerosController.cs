@@ -11,14 +11,16 @@ namespace back_end.Controllers
         public GenerosController(iRepositorio repositorio) {
         this.repositorio = repositorio;
         }
-        [HttpGet]
+        [HttpGet] //api/generos
+        [HttpGet("listado")] //api/generos/listado
+        [HttpGet("/listadogeneros")] // /listadogeneros
         public List<Genero> Get()
         {
             return repositorio.ObtenerTodosLosGeneros();
         }
 
-        [HttpGet]
-        public Genero Get(int Id)
+        [HttpGet("{Id:int}/{nombre=Roberto}")] //api/generos/ejemplo
+        public Genero Get(int Id, string nombre)
         {
             var genero = repositorio.ObtenerPorId(Id);
 
