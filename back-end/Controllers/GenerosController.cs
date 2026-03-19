@@ -1,5 +1,6 @@
 ﻿using back_end.Entidades;
 using back_end.Repositorios;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace back_end.Controllers
@@ -14,39 +15,41 @@ namespace back_end.Controllers
         [HttpGet] //api/generos
         [HttpGet("listado")] //api/generos/listado
         [HttpGet("/listadogeneros")] // /listadogeneros
-        public List<Genero> Get()
+        public ActionResult<List<Genero>> Get()
         {
             return repositorio.ObtenerTodosLosGeneros();
         }
 
         [HttpGet("{Id:int}/{nombre=Roberto}")] //api/generos/ejemplo
-        public Genero Get(int Id, string nombre)
+        public ActionResult<Genero> Get(int Id, string nombre)
         {
             var genero = repositorio.ObtenerPorId(Id);
 
             if (genero == null)
             {
-                //return NotFound();
+                return NotFound();
             }
+            // return "felipe";
 
-            return genero;
+            return Ok(genero);
         }
 
         [HttpPost]
-        public void Post()
+        public ActionResult Post()
         {
-
+            return NoContent();
         }
 
         [HttpPut]
-        public void Put()
+        public ActionResult Put()
         {
+            return NoContent();
         }
 
         [HttpDelete]
-        public void Delete()
+        public ActionResult Delete()
         {
-
+            return NoContent();
         }
     }
 }
