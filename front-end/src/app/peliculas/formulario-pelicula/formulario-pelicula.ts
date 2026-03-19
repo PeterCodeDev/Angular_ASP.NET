@@ -6,10 +6,12 @@ import { RouterLink } from "@angular/router";
 import { InputMarkdown } from '../../utilidades/input-markdown/input-markdown';
 import { InputImg } from '../../utilidades/input-img/input-img';
 import { PeliculaCreacionDTO, PeliculaDTO } from '../peliculas';
+import { SelectorMultiple } from '../../utilidades/selector-multiple/selector-multiple';
+import { MultipleSelectorModel } from '../../utilidades/selector-multiple/MultipleSelectorModel';
 
 @Component({
   selector: 'app-formulario-pelicula',
-  imports: [ReactiveFormsModule, CommonModule, MaterialModule, RouterLink, InputImg, InputMarkdown],
+  imports: [ReactiveFormsModule, CommonModule, MaterialModule, RouterLink, InputImg, InputMarkdown,SelectorMultiple],
   templateUrl: './formulario-pelicula.html',
   styleUrl: './formulario-pelicula.css',
 })
@@ -25,6 +27,15 @@ export class FormularioPelicula implements OnInit{
   @Output()
   OnSubmit: EventEmitter<PeliculaCreacionDTO> = new EventEmitter<PeliculaCreacionDTO>();
 
+
+  generosNoSeleccionados: MultipleSelectorModel[]= [
+    { llave: 1, valor: 'Drama'},
+    { llave: 2, valor: 'Accion'},
+    { llave: 3, valor: 'Comedia'}
+  ];
+
+  generosSeleccionados: MultipleSelectorModel[] = [];
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       titulo: [
@@ -37,7 +48,8 @@ export class FormularioPelicula implements OnInit{
       enCines:false,
       trailer:'',
       fechaLanzamiento:'',
-      poster:''
+      poster:'',
+      generosId: ''
     });
     if(this.modelo !== undefined){
       this.form.patchValue(this.modelo);
@@ -53,6 +65,9 @@ export class FormularioPelicula implements OnInit{
   }
 
   guardarCambios(){
+    console.log(this.generosSeleccionados);
+    const generosIds = this.generosSeleccionados.map(val => val.llave);
+    this.form.get('generosId').setValue(generosIds);
     this.OnSubmit.emit(this.form.value);
   }
 }
