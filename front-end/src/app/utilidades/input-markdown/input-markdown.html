@@ -1,7 +1,7 @@
 <mat-tab-group>
     <mat-tab label="Editar">
         <mat-form-field apperance="fill">
-        <mat-label>Biografia</mat-label>
+        <mat-label>{{placeHolderTextArea}}</mat-label>
         <textarea #texto (input)="inputTextArea(texto.value)" matInput></textarea>
         </mat-form-field>
     </mat-tab>

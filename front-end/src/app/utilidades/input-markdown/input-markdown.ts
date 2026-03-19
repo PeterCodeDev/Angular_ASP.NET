@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaterialModule } from '../../material/material-module';
 import { MarkdownComponent } from "ngx-markdown";
 
@@ -10,9 +10,11 @@ import { MarkdownComponent } from "ngx-markdown";
   styleUrl: './input-markdown.css',
 })
 export class InputMarkdown implements OnInit{
-
+  @Input()
   contenidoMarkdown = '';
 
+  @Input()
+  placeHolderTextArea:string = 'Texto';
 
   @Output()
   changeMarkdown: EventEmitter<string> = new EventEmitter<string>();

@@ -11,11 +11,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker'
 import {MatLineModule} from '@angular/material/core'
 import {MatNativeDateModule} from '@angular/material/core'
 import {MatTabsModule} from '@angular/material/tabs'
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
   exports:[
-    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule
+    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule
   ],
   imports: [CommonModule],
 })
