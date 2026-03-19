@@ -12,11 +12,12 @@ import {MatLineModule} from '@angular/material/core'
 import {MatNativeDateModule} from '@angular/material/core'
 import {MatTabsModule} from '@angular/material/tabs'
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
   exports:[
-    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule
+    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule,MatAutocompleteModule
   ],
   imports: [CommonModule],
 })

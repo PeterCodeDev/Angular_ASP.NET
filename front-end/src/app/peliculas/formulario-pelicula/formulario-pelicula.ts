@@ -8,10 +8,11 @@ import { InputImg } from '../../utilidades/input-img/input-img';
 import { PeliculaCreacionDTO, PeliculaDTO } from '../peliculas';
 import { SelectorMultiple } from '../../utilidades/selector-multiple/selector-multiple';
 import { MultipleSelectorModel } from '../../utilidades/selector-multiple/MultipleSelectorModel';
+import { AutocompleteActores } from '../../actores/autocomplete-actores/autocomplete-actores';
 
 @Component({
   selector: 'app-formulario-pelicula',
-  imports: [ReactiveFormsModule, CommonModule, MaterialModule, RouterLink, InputImg, InputMarkdown,SelectorMultiple],
+  imports: [ReactiveFormsModule, CommonModule, MaterialModule, RouterLink, InputImg, InputMarkdown,SelectorMultiple,AutocompleteActores],
   templateUrl: './formulario-pelicula.html',
   styleUrl: './formulario-pelicula.css',
 })
