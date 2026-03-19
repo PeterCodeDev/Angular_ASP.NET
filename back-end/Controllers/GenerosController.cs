@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace back_end.Controllers
 {
     [Route("api/generos")]
+    [ApiController]
     public class GenerosController: ControllerBase
     {
         private readonly iRepositorio repositorio;
