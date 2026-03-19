@@ -4,7 +4,7 @@ namespace back_end.Repositorios
 {
     public interface iRepositorio
     {
-        Genero ObtenerPorId(int Id);
+        Task<Genero> ObtenerPorId(int Id);
         List<Genero> ObtenerTodosLosGeneros();
     }
 }
