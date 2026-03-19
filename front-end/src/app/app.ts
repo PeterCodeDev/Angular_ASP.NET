@@ -9,7 +9,7 @@ import {NgModule} from '@angular/core'
 import { Menu } from "./menu/menu";
 import { Rating } from "./utilidades/rating/rating";
 import { RouterOutlet } from "@angular/router";
-import { ReactiveFormsModule} from '@angular/forms'
+import { ReactiveFormsModule, FormsModule} from '@angular/forms'
 import {MarkdownModule} from "ngx-markdown"
 /*import { CicloDeVida } from "./ciclo-de-vida/ciclo-de-vida";*/
 
@@ -17,7 +17,7 @@ import {MarkdownModule} from "ngx-markdown"
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule, MarkdownModule],
+  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule, MarkdownModule,FormsModule],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'

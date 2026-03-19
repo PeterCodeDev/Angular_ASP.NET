@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../../material/material-module';
 import { CommonModule } from '@angular/common';
 import { FormularioPelicula } from '../formulario-pelicula/formulario-pelicula';
-import { PeliculaDTO } from '../peliculas';
+import { PeliculaCreacionDTO, PeliculaDTO } from '../peliculas';
 
 @Component({
   selector: 'app-editar-pelicula',
@@ -19,5 +19,8 @@ export class EditarPelicula implements OnInit{
   }
   ngOnInit(): void {
     
+  }
+  guardarCambios(pelicula: PeliculaCreacionDTO){
+    console.log(pelicula); 
   }
 }

@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaterialModule } from '../../material/material-module';
 import { MarkdownComponent } from "ngx-markdown";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-markdown',
   standalone:true,
-  imports: [MaterialModule, MarkdownComponent],
+  imports: [MaterialModule, MarkdownComponent,FormsModule],
   templateUrl: './input-markdown.html',
   styleUrl: './input-markdown.css',
 })
@@ -22,12 +23,9 @@ export class InputMarkdown implements OnInit{
   constructor(){}
 
   ngOnInit(): void {
-    
+    console.log(this.contenidoMarkdown);
   }
 
-  inputTextArea(texto:string){
-    this.contenidoMarkdown = texto;
-    this.changeMarkdown.emit(texto);
-  }
+
 
 }
