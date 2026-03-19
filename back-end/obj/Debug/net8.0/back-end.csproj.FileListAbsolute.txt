@@ -30,3 +30,4 @@ C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\refint
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\back-end.pdb
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\back-end.genruntimeconfig.cache
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\ref\back-end.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\back-end.sourcelink.json

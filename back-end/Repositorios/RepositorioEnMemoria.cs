@@ -2,7 +2,7 @@
 
 namespace back_end.Repositorios
 {
-    public class RepositorioEnMemoria
+    public class RepositorioEnMemoria: iRepositorio
     {
         
         private List<Genero> _generos;
@@ -18,6 +18,11 @@ namespace back_end.Repositorios
         public List<Genero> ObtenerTodosLosGeneros()
         {
             return _generos;
+        }
+
+        public Genero ObtenerPorId(int Id)
+        {
+            return _generos.FirstOrDefault(x => x.Id == Id);
         }
     }
 }
