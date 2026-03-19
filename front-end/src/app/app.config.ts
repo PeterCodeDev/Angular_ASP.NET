@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material-module';
+import { provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,8 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
 
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+
+    provideMarkdown()
   ]
 };

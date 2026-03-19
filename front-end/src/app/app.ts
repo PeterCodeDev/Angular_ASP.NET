@@ -10,13 +10,14 @@ import { Menu } from "./menu/menu";
 import { Rating } from "./utilidades/rating/rating";
 import { RouterOutlet } from "@angular/router";
 import { ReactiveFormsModule} from '@angular/forms'
+import {MarkdownModule} from "ngx-markdown"
 /*import { CicloDeVida } from "./ciclo-de-vida/ciclo-de-vida";*/
 
 
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule],
+  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule, MarkdownModule],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'

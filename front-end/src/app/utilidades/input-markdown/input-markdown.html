@@ -2,10 +2,10 @@
     <mat-tab label="Editar">
         <mat-form-field apperance="fill">
         <mat-label>Biografia</mat-label>
-        <textarea matInput></textarea>
+        <textarea #texto (input)="inputTextArea(texto.value)" matInput></textarea>
         </mat-form-field>
     </mat-tab>
     <mat-tab label="Preview">
-
+        <markdown [data]="contenidoMarkdown" ngPreserveWhitespaces></markdown>
     </mat-tab>
 </mat-tab-group>
