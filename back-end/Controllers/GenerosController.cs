@@ -2,6 +2,7 @@
 using back_end.Repositorios;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace back_end.Controllers
 {
@@ -20,9 +21,15 @@ namespace back_end.Controllers
             return repositorio.ObtenerTodosLosGeneros();
         }
 
-        [HttpGet("{Id:int}/{nombre=Roberto}")] //api/generos/ejemplo
-        public async Task<ActionResult<Genero>> Get(int Id, string nombre)
+        [HttpGet("{Id:int}")] //api/generos/ejemplo
+        public async Task<ActionResult<Genero>> Get(int Id,[FromHeader] string nombre)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var genero = await repositorio.ObtenerPorId(Id);
 
             if (genero == null)
@@ -35,13 +42,13 @@ namespace back_end.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post()
+        public ActionResult Post([FromBody] Genero genero)
         {
             return NoContent();
         }
 
         [HttpPut]
-        public ActionResult Put()
+        public ActionResult Put([FromBody] Genero genero)
         {
             return NoContent();
         }
