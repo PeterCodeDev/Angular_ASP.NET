@@ -1,3 +1,4 @@
+using back_end.Controllers;
 using back_end.Repositorios;
 
 var builder = WebApplication.CreateBuilder(args);

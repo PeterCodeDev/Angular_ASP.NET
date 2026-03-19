@@ -15,6 +15,7 @@ public class WeatherForecastController : ControllerBase
     private readonly ILogger<WeatherForecastController> _logger;
     private readonly iRepositorio repositorio;
 
+
     public WeatherForecastController(ILogger<WeatherForecastController> logger,
         iRepositorio repositorio)
     {
