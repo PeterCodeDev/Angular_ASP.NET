@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { generoDTO } from './genero';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.development';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GenerosService {
-  constructor(){
+  constructor(private http:HttpClient){
 
-  }
-  public obtenerTodos(): generoDTO[]{
-    return [{id:1, nombre:'Drama'}];
+    }
+
+  private apiURL = environment.apiURL;
+
+  public obtenerTodos(): Observable<generoDTO[]>{
+    return this.http.get<generoDTO[]>(this.apiURL);
   }
 
 }

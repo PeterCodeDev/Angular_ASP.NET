@@ -11,11 +11,12 @@ import {GenerosService} from '../generos.service'
 })
 export class IndiceGeneros implements OnInit{
   constructor(private generosService: GenerosService){
-
   }
 
   ngOnInit(): void {
-    const generos = this.generosService.obtenerTodos();
-    console.log(generos);
+    this.generosService.obtenerTodos()
+    .subscribe(generos => {
+      console.log(generos);
+    }, error => console.error(error));
   }
 }

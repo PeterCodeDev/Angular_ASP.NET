@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http'
 import { ListadoPeliculas } from './peliculas/listado-peliculas/listado-peliculas';
 import { ListadoGenerico } from './utilidades/listado-generico/listado-generico';
 import { MaterialModule } from './material/material-module';
@@ -19,7 +20,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete'
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule, MarkdownModule,FormsModule,MatSelectModule,MatAutocompleteModule],
+  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule, MarkdownModule,FormsModule,MatSelectModule,MatAutocompleteModule,HttpClientModule],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
