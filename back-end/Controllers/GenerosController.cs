@@ -12,15 +12,21 @@ namespace back_end.Controllers
     {
         private readonly iRepositorio repositorio;
         private readonly WeatherForecastController weatherForecastController;
-        public GenerosController(iRepositorio repositorio ,WeatherForecastController weatherForecastController) {
+        private readonly ILogger<GenerosController> logger;
+
+        public GenerosController(iRepositorio repositorio ,WeatherForecastController weatherForecastController,
+            ILogger<GenerosController> logger
+            ) {
         this.repositorio = repositorio;
         this.weatherForecastController = weatherForecastController;
+            this.logger = logger;
         }
         [HttpGet] //api/generos
         [HttpGet("listado")] //api/generos/listado
         [HttpGet("/listadogeneros")] // /listadogeneros
         public ActionResult<List<Genero>> Get()
         {
+            logger.LogInformation("Vamos a mostrar los generos");
             return repositorio.ObtenerTodosLosGeneros();
         }
         [HttpGet("guid")] // api/generos/guid
@@ -33,9 +39,11 @@ namespace back_end.Controllers
             });
         }
 
-        [HttpGet("{Id:int}")] //api/generos/ejemplo
+        [HttpGet("{Id:int}")] // api/generos/3/felipe
         public async Task<ActionResult<Genero>> Get(int Id,[FromHeader] string nombre)
         {
+
+            logger.LogDebug($"Obteniendo un genero por el Id {Id}");
 
             if (!ModelState.IsValid)
             {
@@ -46,6 +54,7 @@ namespace back_end.Controllers
 
             if (genero == null)
             {
+                logger.LogWarning($"No pudimos encontrar el genero del id {Id}");
                 return NotFound();
             }
             // return "felipe";
