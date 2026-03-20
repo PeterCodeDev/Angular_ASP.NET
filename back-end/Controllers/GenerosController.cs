@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace back_end.Controllers
 {
@@ -14,16 +16,19 @@ namespace back_end.Controllers
     public class GenerosController: ControllerBase
     {
         private readonly ILogger<GenerosController> logger;
+        private readonly ApplicationDBContext context;
 
         public GenerosController(
-            ILogger<GenerosController> logger
+            ILogger<GenerosController> logger,
+            ApplicationDBContext context
             ) {
         this.logger = logger;
+            this.context = context;
         }
         [HttpGet] //api/generos
-        public ActionResult<List<Genero>> Get()
+        public async Task<ActionResult<List<Genero>>> Get()
         {
-            return new List<Genero>() { new Genero() { Id = 1, Nombre = "Comedia" } };
+            return await context.Generos.ToListAsync();
         }
        
         [HttpGet("{Id:int}")]
@@ -33,9 +38,11 @@ namespace back_end.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Genero genero)
+        public async Task<ActionResult> Post([FromBody] Genero genero)
         {
-            throw new NotImplementedException();
+            context.Add(genero);
+            await context.SaveChangesAsync();
+            return NoContent();
         }
 
         [HttpPut]
