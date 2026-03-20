@@ -5,6 +5,7 @@ import { MaterialModule } from "../../material/material-module";
 import { primeraLetraMayuscula } from '../../utilidades/validadores/primeraLetraMayuscula';
 import { FormularioGenero } from "../formulario-genero/formulario-genero";
 import { generoCreacionDTO } from '../genero';
+import { GenerosService } from '../generos.service';
 
 @Component({
   selector: 'app-crear-genero',
@@ -14,11 +15,12 @@ import { generoCreacionDTO } from '../genero';
   styleUrl: './crear-genero.css',
 })
 export class CrearGenero{
-  constructor(private router: Router){}
+  constructor(private router: Router, private generosService: GenerosService){}
 
   guardarCambios(genero: generoCreacionDTO){
-    // - - - guardar los cambios
-    console.log(genero);
+    this.generosService.crear(genero).subscribe(() =>{
     this.router.navigate(['/generos']);
+    }, error => console.error(error));
+  
   }
 }
