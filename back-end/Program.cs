@@ -2,6 +2,7 @@ using back_end.Controllers;
 using back_end.Repositorios;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using back_end.Filtros;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 builder.Services.AddResponseCaching();
 builder.Services.AddScoped<iRepositorio, RepositorioEnMemoria>();
 builder.Services.AddScoped<WeatherForecastController>();
-builder.Services.AddControllers();
+builder.Services.AddTransient<MiFiltroDeAccion>();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(FiltroDeExcepcion));
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
