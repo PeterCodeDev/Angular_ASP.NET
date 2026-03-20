@@ -6,5 +6,7 @@ namespace back_end.Repositorios
     {
         Task<Genero> ObtenerPorId(int Id);
         List<Genero> ObtenerTodosLosGeneros();
+        Guid ObtenerGUID();
+        void CrearGenero(Genero genero);
     }
 }

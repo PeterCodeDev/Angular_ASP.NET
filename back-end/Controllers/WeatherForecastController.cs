@@ -38,4 +38,9 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+    [HttpGet("guid")]
+    public Guid ObtenerGUIDWeatherForecastController()
+    {
+        return repositorio.ObtenerGUID();
+    }
 }
