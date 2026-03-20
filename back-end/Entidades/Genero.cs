@@ -3,32 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace back_end.Entidades
 {
-    public class Genero: IValidatableObject
+    public class Genero
     {
         public int Id { get; set; }
         [Required(ErrorMessage ="El campo {0} es requerido")]
-        [StringLength(maximumLength:10)]
-        //[PrimerLetraMayuscula]
+        [StringLength(maximumLength:50)]
+        [PrimerLetraMayuscula]
         public string Nombre { get; set; }
-        [Range(18,200)]
-        public int Edad { get; set; }
-        [CreditCard]
-        public string TarjetaDeCredito { get; set; }
-        [Url]
-        public string URL { get; set; }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (!string.IsNullOrEmpty(Nombre))
-            {
-                var primeraLetra = Nombre[0].ToString();
-
-                if (primeraLetra != primeraLetra.ToUpper())
-                {
-                    yield return new ValidationResult("La primer letra debe ser mayuscula",
-                        new string[] {nameof(Nombre)});
-                }
-            }
+        
         }
     }
-}
+

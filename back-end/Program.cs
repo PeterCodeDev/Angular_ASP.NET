@@ -1,5 +1,4 @@
 using back_end.Controllers;
-using back_end.Repositorios;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using back_end.Filtros;
@@ -8,10 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
-builder.Services.AddResponseCaching();
-builder.Services.AddScoped<iRepositorio, RepositorioEnMemoria>();
-builder.Services.AddScoped<WeatherForecastController>();
-builder.Services.AddTransient<MiFiltroDeAccion>();
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(typeof(FiltroDeExcepcion));
@@ -27,35 +22,6 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.Use(async (context, next) =>
-{
-    using(var swapStream = new MemoryStream())
-    {
-        var respuestaOriginal = context.Response.Body;
-        context.Response.Body = swapStream;
-
-        await next.Invoke();
-
-        swapStream.Seek(0, SeekOrigin.Begin);
-        string respuesta = new StreamReader(swapStream).ReadToEnd();
-        swapStream.Seek(0, SeekOrigin.Begin);
-
-        await swapStream.CopyToAsync(respuestaOriginal);
-        context.Response.Body = respuestaOriginal;
-
-        app.Logger.LogInformation(respuesta);
-    }
-});
-
-app.Map("/mapa1", (app) =>
-{
-    app.Run(async context =>
-    { 
-    await context.Response.WriteAsync("Estoy interceptando el pipeline");
-    });
-});
-
-
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -68,8 +34,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
-app.UseResponseCaching();
 
 app.UseAuthentication();
 
