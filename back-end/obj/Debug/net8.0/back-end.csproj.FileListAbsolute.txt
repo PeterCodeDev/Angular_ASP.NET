@@ -31,3 +31,11 @@ C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\back-e
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\back-end.genruntimeconfig.cache
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\ref\back-end.dll
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\back-end.sourcelink.json
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

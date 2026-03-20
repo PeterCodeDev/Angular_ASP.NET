@@ -1,10 +1,13 @@
 using back_end.Controllers;
 using back_end.Repositorios;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+builder.Services.AddResponseCaching();
 builder.Services.AddScoped<iRepositorio, RepositorioEnMemoria>();
 builder.Services.AddScoped<WeatherForecastController>();
 builder.Services.AddControllers();
@@ -58,6 +61,12 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseResponseCaching();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

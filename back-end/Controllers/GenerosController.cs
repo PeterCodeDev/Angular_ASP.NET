@@ -1,5 +1,7 @@
 ﻿using back_end.Entidades;
 using back_end.Repositorios;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -8,6 +10,7 @@ namespace back_end.Controllers
 {
     [Route("api/generos")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class GenerosController: ControllerBase
     {
         private readonly iRepositorio repositorio;
@@ -24,6 +27,7 @@ namespace back_end.Controllers
         [HttpGet] //api/generos
         [HttpGet("listado")] //api/generos/listado
         [HttpGet("/listadogeneros")] // /listadogeneros
+        //[ResponseCache(Duration =60)]
         public ActionResult<List<Genero>> Get()
         {
             logger.LogInformation("Vamos a mostrar los generos");
