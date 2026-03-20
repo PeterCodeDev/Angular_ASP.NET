@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { generoCreacionDTO } from '../genero';
 import { primeraLetraMayuscula } from '../../utilidades/validadores/primeraLetraMayuscula';
 import { MaterialModule } from '../../material/material-module';
+import { MostrarErrores } from '../../utilidades/mostrar-errores/mostrar-errores';
 
 @Component({
   selector: 'app-formulario-genero',
   standalone:true,
-  imports: [ReactiveFormsModule, MaterialModule],
+  imports: [ReactiveFormsModule, MaterialModule,MostrarErrores],
   templateUrl: './formulario-genero.html',
   styleUrl: './formulario-genero.css',
 })
@@ -15,6 +16,9 @@ export class FormularioGenero implements OnInit{
   constructor(private formBuilder : FormBuilder){}
 
   form: FormGroup;
+
+  @Input()
+  errores:string[] =[];
 
   @Input()
   modelo: generoCreacionDTO;

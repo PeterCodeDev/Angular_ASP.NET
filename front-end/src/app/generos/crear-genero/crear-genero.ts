@@ -15,6 +15,9 @@ import { GenerosService } from '../generos.service';
   styleUrl: './crear-genero.css',
 })
 export class CrearGenero{
+
+  errores:string[] = [];
+  
   constructor(private router: Router, private generosService: GenerosService){}
 
   guardarCambios(genero: generoCreacionDTO){
