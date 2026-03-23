@@ -10,6 +10,7 @@ namespace back_end.Entidades
         [StringLength(maximumLength:50)]
         [PrimerLetraMayuscula]
         public string Nombre { get; set; }
+
         
         }
     }

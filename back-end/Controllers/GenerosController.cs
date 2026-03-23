@@ -1,10 +1,13 @@
-﻿using back_end.Entidades;
+﻿using AutoMapper;
+using back_end.DTOs;
+using back_end.Entidades;
 using back_end.Filtros;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
@@ -17,19 +20,24 @@ namespace back_end.Controllers
     {
         private readonly ILogger<GenerosController> logger;
         private readonly ApplicationDBContext context;
+        private readonly IMapper mapper;
 
         public GenerosController(
             ILogger<GenerosController> logger,
-            ApplicationDBContext context
+            ApplicationDBContext context,
+            IMapper mapper
             ) {
-        this.logger = logger;
+            this.logger = logger;
             this.context = context;
+            this.mapper = mapper;
         }
-        [HttpGet] //api/generos
-        public async Task<ActionResult<List<Genero>>> Get()
+        [HttpGet] // api/generos
+        public async Task<ActionResult<List<GeneroDTO>>> Get()
         {
-            return await context.Generos.ToListAsync();
+            var generos = await context.Generos.ToListAsync();
+            return mapper.Map<List<GeneroDTO>>(generos);
         }
+        
        
         [HttpGet("{Id:int}")]
         public async Task<ActionResult<Genero>> Get(int Id)
