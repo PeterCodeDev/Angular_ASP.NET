@@ -7,6 +7,7 @@ import { ListadoGenerico } from '../../utilidades/listado-generico/listado-gener
 import { MatColumnDef, MatHeaderCellDef, MatCellDef,MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { HttpResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-indice-generos',
@@ -41,4 +42,37 @@ export class IndiceGeneros implements OnInit{
     this.cantidadRegistrosAMostrar = datos.pageSize;
     this.cargarRegistros(this.paginaActual, this.cantidadRegistrosAMostrar);
   }
-}
+
+ borrar(id: number) {
+    Swal.fire({
+      title: 'Confirmación',
+      text: '¿Estás seguro que deseas borrar el registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      
+      // Si el usuario hace clic en "Sí, borrar"
+      if (result.isConfirmed) {
+        
+        // 1. Llamamos a tu servicio para que se lo pida al backend
+        this.generosService.borrar(id).subscribe({
+          next: () => {
+            // 2. Mostramos una alerta de éxito
+            Swal.fire('¡Borrado!', 'El género ha sido eliminado correctamente.', 'success');
+            
+            // 3. Recargamos la tabla para que el elemento desaparezca de la vista
+            this.cargarRegistros(this.paginaActual, this.cantidadRegistrosAMostrar);
+          },
+          error: (error) => {
+            console.error(error);
+            Swal.fire('Error', 'Hubo un problema al intentar borrar el registro.', 'error');
+          }
+        });
+
+      }
+    });
+  }}
