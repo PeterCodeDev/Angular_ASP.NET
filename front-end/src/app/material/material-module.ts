@@ -15,11 +15,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTableModule} from '@angular/material/table'
 import {MatPaginatorModule} from '@angular/material/paginator'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 @NgModule({
   declarations: [],
   exports:[
-    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule,MatAutocompleteModule,MatTableModule,MatPaginatorModule
+    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule,MatAutocompleteModule,MatTableModule,MatPaginatorModule,MatProgressSpinnerModule
   ],
   imports: [CommonModule],
 })
