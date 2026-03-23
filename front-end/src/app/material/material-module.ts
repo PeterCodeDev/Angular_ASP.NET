@@ -14,11 +14,12 @@ import {MatTabsModule} from '@angular/material/tabs'
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTableModule} from '@angular/material/table'
+import {MatPaginatorModule} from '@angular/material/paginator'
 
 @NgModule({
   declarations: [],
   exports:[
-    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule,MatAutocompleteModule,MatTableModule
+    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule,MatAutocompleteModule,MatTableModule,MatPaginatorModule
   ],
   imports: [CommonModule],
 })
