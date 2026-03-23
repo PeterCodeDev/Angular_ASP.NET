@@ -4,11 +4,12 @@ import { generoCreacionDTO } from '../genero';
 import { primeraLetraMayuscula } from '../../utilidades/validadores/primeraLetraMayuscula';
 import { MaterialModule } from '../../material/material-module';
 import { MostrarErrores } from '../../utilidades/mostrar-errores/mostrar-errores';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-formulario-genero',
   standalone:true,
-  imports: [ReactiveFormsModule, MaterialModule,MostrarErrores],
+  imports: [ReactiveFormsModule, MaterialModule, MostrarErrores,CommonModule],
   templateUrl: './formulario-genero.html',
   styleUrl: './formulario-genero.css',
 })

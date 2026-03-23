@@ -6,6 +6,7 @@ import { primeraLetraMayuscula } from '../../utilidades/validadores/primeraLetra
 import { FormularioGenero } from "../formulario-genero/formulario-genero";
 import { generoCreacionDTO } from '../genero';
 import { GenerosService } from '../generos.service';
+import { parsearErroresAPI } from '../../utilidades/utilidades';
 
 @Component({
   selector: 'app-crear-genero',
@@ -23,7 +24,8 @@ export class CrearGenero{
   guardarCambios(genero: generoCreacionDTO){
     this.generosService.crear(genero).subscribe(() =>{
     this.router.navigate(['/generos']);
-    }, error => console.error(error));
-  
+    }, 
+    (error) => this.errores = parsearErroresAPI(error)
+    );
   }
 }
