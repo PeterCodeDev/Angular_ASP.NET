@@ -14,13 +14,14 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms'
 import {MarkdownModule} from "ngx-markdown"
 import { MatSelectModule } from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import { MatTableModule } from '@angular/material/table';
 /*import { CicloDeVida } from "./ciclo-de-vida/ciclo-de-vida";*/
 
 
 @Component({
   selector: 'app-root',
   //imports: [RouterOutlet],
-  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule, MarkdownModule,FormsModule,MatSelectModule,MatAutocompleteModule,HttpClientModule],
+  imports: [CommonModule,MaterialModule, Menu, RouterOutlet, ReactiveFormsModule, MarkdownModule,FormsModule,MatSelectModule,MatAutocompleteModule,HttpClientModule,MatTableModule],
   standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'

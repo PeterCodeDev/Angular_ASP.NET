@@ -1,3 +1,7 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 body{margin:0; font-family: Roboto, "Helvetica Neue",sans-serif;}
 
+.table-indice{
+    width: 100%;
+    margin-top: 1rem;
+}
