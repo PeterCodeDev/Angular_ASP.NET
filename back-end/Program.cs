@@ -5,11 +5,14 @@ using back_end.Filtros;
 using back_end;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using back_end.Utilidades;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenarArchivosLocal>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
 
@@ -18,7 +21,8 @@ builder.Services.AddCors(options =>
     var frontend_url = builder.Configuration.GetValue<string>("frontend_url");
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins(frontend_url).AllowAnyMethod().AllowAnyHeader();
+        builder.WithOrigins(frontend_url).AllowAnyMethod().AllowAnyHeader()
+        .WithExposedHeaders(new string[] { "cantidadTotalRegistros" });
     });
 });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
@@ -47,6 +51,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseRouting();
 

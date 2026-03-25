@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "qjMu/SoG5Y3zQG//GHPD04Dk9LHRNf1G0i15JnpvNGI=",
+  "Hash": "QEfWP+q8k2w9tAIHUiskFJJFZUAEjOoiNy8eAws1Jp4=",
   "Source": "back-end",
   "BasePath": "_content/back-end",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "back-end\\wwwroot",
+      "Source": "back-end",
+      "ContentRoot": "C:\\Users\\Practicas\\Desktop\\CursoAngular_ASP.NET\\back-end\\wwwroot\\",
+      "BasePath": "_content/back-end",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }
