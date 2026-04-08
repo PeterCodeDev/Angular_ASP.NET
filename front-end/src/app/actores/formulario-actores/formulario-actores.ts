@@ -5,11 +5,12 @@ import { RouterLink } from "@angular/router";
 import { actorCreacionDTO, actorDTO } from '../actor';
 import { InputImg } from '../../utilidades/input-img/input-img';
 import { InputMarkdown } from '../../utilidades/input-markdown/input-markdown';
+import { MostrarErrores } from '../../utilidades/mostrar-errores/mostrar-errores';
 
 @Component({
   selector: 'app-formulario-actores',
   standalone:true,
-  imports: [ReactiveFormsModule, MaterialModule, RouterLink, InputImg,InputMarkdown],
+  imports: [ReactiveFormsModule, MaterialModule, RouterLink, InputImg,InputMarkdown,MostrarErrores],
   templateUrl: './formulario-actores.html',
   styleUrl: './formulario-actores.css',
 })
@@ -20,6 +21,9 @@ form: FormGroup;
 
 @Input()
 modelo:actorDTO;
+
+@Input()
+errores: string[] =[];
 
 @Output()
 OnSubmit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
@@ -42,14 +46,16 @@ ngOnInit(): void {
   }
 }
 archivoSeleccionado(file){
-this.form.get('get').setValue(file);
+this.form.get('foto').setValue(file);
 }
 
 cambioMarkdown(texto:string){
-this.form.get('get').setValue(texto);
+this.form.get('biografia').setValue(texto);
 }
 
-onSubmit(){
+onSubmit() {
+  console.log("1. Clic en el botón. ¿Es válido el form?: ", this.form.valid);
+  console.log("2. Datos del formulario: ", this.form.value);
   this.OnSubmit.emit(this.form.value);
 }
 

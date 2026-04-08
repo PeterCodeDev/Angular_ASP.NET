@@ -3,6 +3,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { FormularioCine } from '../formulario-cine/formulario-cine';
 import { cineCreacionDTO } from '../cine';
+import { CinesService } from '../cines.service';
+import { Router } from '@angular/router';
+import { parsearErroresAPI } from '../../utilidades/utilidades';
 
 
 @Component({
@@ -12,14 +15,16 @@ import { cineCreacionDTO } from '../cine';
   templateUrl: './crear-cine.html',
   styleUrl: './crear-cine.css',
 })
-export class CrearCine implements OnInit{
-  constructor(){}
-
-  ngOnInit(): void {
-    
-  }
+export class CrearCine{
+  errores:string[] = [];
+  
+  constructor(private router: Router, private generosService: CinesService){}
 
   guardarCambios(cine: cineCreacionDTO){
-    console.log(cine)
+    this.generosService.crear(cine).subscribe(() =>{
+    this.router.navigate(['/cines']);
+    }, 
+    (error) => this.errores = parsearErroresAPI(error)
+    );
   }
 }

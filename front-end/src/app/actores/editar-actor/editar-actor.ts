@@ -13,8 +13,7 @@ import { actorCreacionDTO, actorDTO } from '../actor';
 export class EditarActor implements OnInit {
   constructor(private activatedRoute: ActivatedRoute){}
 
-  modelo:actorDTO={nombre: 'Felipe', fechaNacimiento: new Date(), foto:'https://tse4.mm.bing.net/th/id/OIP.eONT0ixamieWH9LFDkGk7wHaJ4?pid=Api&P=0&h=180'}
-
+modelo: actorDTO
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       alert(params.id);
