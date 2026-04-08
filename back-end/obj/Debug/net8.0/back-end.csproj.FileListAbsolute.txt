@@ -139,3 +139,7 @@ C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\runtim
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\back-end.staticwebassets.runtime.json
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\NetTopologySuite.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\NetTopologySuite.IO.SqlServerBytes.dll
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\EFCoreSqlServerNetTopologySuite.cs

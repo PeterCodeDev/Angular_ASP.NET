@@ -6,15 +6,28 @@ using back_end;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using back_end.Utilidades;
+using NetTopologySuite.Geometries;
+using NetTopologySuite;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddSingleton(provider =>
+    new MapperConfiguration(config =>
+    {
+        var geometryFactory = provider.GetRequiredService<GeometryFactory>();
+        config.AddProfile(new AutoMapperProfiles(geometryFactory));
+    }).CreateMapper()
+);
+builder.Services.AddSingleton<GeometryFactory>(NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326));
+
 builder.Services.AddTransient<IAlmacenadorArchivos, AlmacenarArchivosLocal>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"),
+sqlServer => sqlServer.UseNetTopologySuite()));
+
 
 builder.Services.AddCors(options =>
 {
