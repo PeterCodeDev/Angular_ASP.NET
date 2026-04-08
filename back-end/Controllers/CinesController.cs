@@ -37,6 +37,31 @@ namespace back_end.Controllers
             await context.SaveChangesAsync();
             return NoContent();
         }
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<CineDTO>> Get(int Id)
+        {
+            var genero = await context.Cines.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (genero == null)
+            {
+                return NotFound();
+            }
+            return mapper.Map<CineDTO>(genero);
+        }
+        [HttpPut("{Id:int}")]
+        public async Task<ActionResult> Put(int Id, [FromBody] CineCreacionDTO cineCreacionDTO)
+        {
+            var cine = await context.Cines.FirstOrDefaultAsync(x => x.Id == Id);
+
+            if (cine == null)
+            {
+                return NotFound();
+            }
+            cine = mapper.Map(cineCreacionDTO, cine);
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
