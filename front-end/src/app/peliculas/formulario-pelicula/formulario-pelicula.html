@@ -44,7 +44,9 @@
 
     <h4>Seleccione los actores</h4>
 
-    <app-autocomplete-actores></app-autocomplete-actores>
+    <app-autocomplete-actores [actoresSeleccionados]="actoresSeleccionados">
+        
+    </app-autocomplete-actores>
 
     <div>
         <button mat-flat-button color="primary" [disabled]="form.invalid">

@@ -6,6 +6,7 @@ import { PeliculaCreacionDTO } from '../peliculas';
 import { PeliculasService } from '../peliculas.service';
 import { MultipleSelectorModel } from '../../utilidades/selector-multiple/MultipleSelectorModel';
 import { error } from 'console';
+import { parsearErroresAPI } from '../../utilidades/utilidades';
 
 @Component({
   selector: 'app-crear-pelicula',
@@ -33,7 +34,9 @@ ngOnInit(): void {
   }, error => console.error(error));
 }
 guardarCambios(pelicula: PeliculaCreacionDTO){
-  console.log(pelicula)
+  this.peliculasService.crear(pelicula)
+  .subscribe(() => console.log('exitoso'),
+  error => this.errores = parsearErroresAPI(error));
 }
 
 }

@@ -9,6 +9,7 @@ import { PeliculaCreacionDTO, PeliculaDTO } from '../peliculas';
 import { SelectorMultiple } from '../../utilidades/selector-multiple/selector-multiple';
 import { MultipleSelectorModel } from '../../utilidades/selector-multiple/MultipleSelectorModel';
 import { AutocompleteActores } from '../../actores/autocomplete-actores/autocomplete-actores';
+import { actorPeliculaDTO } from '../../actores/actor';
 
 @Component({
   selector: 'app-formulario-pelicula',
@@ -39,6 +40,9 @@ export class FormularioPelicula implements OnInit{
 
   cinesSeleccionados : MultipleSelectorModel[]=[];
 
+  @Input()
+  actoresSeleccionados:actorPeliculaDTO[];
+
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       titulo: [
@@ -52,8 +56,9 @@ export class FormularioPelicula implements OnInit{
       trailer:'',
       fechaLanzamiento:'',
       poster:'',
-      generosId: '',
-      cinesId:''
+      generosIds: '',
+      cinesIds:'',
+      actores:''
     });
     if(this.modelo !== undefined){
       this.form.patchValue(this.modelo);
@@ -70,10 +75,15 @@ export class FormularioPelicula implements OnInit{
 
   guardarCambios(){
     const generosIds = this.generosSeleccionados.map(val => val.llave);
-    this.form.get('generosId').setValue(generosIds);
+    this.form.get('generosIds').setValue(generosIds);
 
     const cinesIds = this.generosSeleccionados.map(val => val.llave);
-    this.form.get('cinesId').setValue(cinesIds);
+    this.form.get('cinesIds').setValue(cinesIds);
+
+    const actores = this.actoresSeleccionados.map(val => {
+      return {id: val.id, personaje: val.personaje}
+    });
+    this.form.get('actores').setValue(actores);
 
     this.OnSubmit.emit(this.form.value);
   }

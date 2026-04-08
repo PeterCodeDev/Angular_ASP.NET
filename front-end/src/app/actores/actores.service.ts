@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { actorCreacionDTO, actorDTO } from './actor';
+import { actorCreacionDTO, actorDTO, actorPeliculaDTO } from './actor';
 import { formatearFecha } from '../utilidades/utilidades';
 import { Observable } from 'rxjs';
 import { generoDTO } from '../generos/genero';
@@ -20,6 +20,12 @@ export class ActoresService {
     params = params.append('pagina', pagina.toString());
     params = params.append('recordsPorPagina', cantidadRegistrosAMostrar.toString());
     return this.http.get<actorDTO[]>(this.apiURL, {observe: 'response', params});
+  }
+
+  public obtenerPorNombre(nombre:String):Observable<actorPeliculaDTO[]>{
+    const headers = new HttpHeaders('Content-Type: application/json');
+    return this.http.post<actorPeliculaDTO[]>(`${this.apiURL}/buscarPorNombre`,
+      JSON.stringify(nombre),{headers});
   }
 
   // 👇 Exactamente como lo tiene el profesor
