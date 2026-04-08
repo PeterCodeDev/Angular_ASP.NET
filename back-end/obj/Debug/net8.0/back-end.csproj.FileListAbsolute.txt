@@ -143,3 +143,4 @@ C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Micros
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\NetTopologySuite.dll
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\NetTopologySuite.IO.SqlServerBytes.dll
 C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\obj\Debug\net8.0\EFCoreSqlServerNetTopologySuite.cs
+C:\Users\Practicas\Desktop\CursoAngular_ASP.NET\back-end\bin\Debug\net8.0\Newtonsoft.Json.dll
