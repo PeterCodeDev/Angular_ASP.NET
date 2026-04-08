@@ -13,5 +13,9 @@ namespace back_end.Entidades
         public bool EnCines { get; set; }
         public DateTime FechaLanzamiento{ get; set; }
         public string Poster { get; set; }
+        public List<PeliculasActores> PeliculasActores { get; set; }
+        public List<PeliculasGeneros> PeliculasGeneros { get; set; }
+        public List<PeliculasCines> PeliculasCines { get; set; }
+
     }
 }
