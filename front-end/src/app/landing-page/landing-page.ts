@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListadoPeliculas } from '../peliculas/listado-peliculas/listado-peliculas';
+import { PeliculasService } from '../peliculas/peliculas.service';
+import { PeliculaDTO } from '../peliculas/peliculas';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,25 +11,15 @@ import { ListadoPeliculas } from '../peliculas/listado-peliculas/listado-pelicul
   styleUrl: './landing-page.css',
 })
 export class LandingPage implements OnInit {
+  constructor(private peliculasService:PeliculasService){}
   ngOnInit(): void {
-    
-    //Gif 1: Peliculas en cines
-      this.peliculaEnCines =[{
-      titulo : 'Spider-man',
-    fechaLanzamiento: new Date(),
-    precio: 1400.99,
-    poster:'https://tse4.mm.bing.net/th/id/OIP.jHQDng3iC4l-VWFxpLA6GgHaK9?pid=Api&P=0&h=180'
-  },
-  {
-  titulo : 'Black Phanter',
-    fechaLanzamiento: new Date('2016-11-14'),
-    precio: 300.99,
-    poster:'https://tse3.mm.bing.net/th/id/OIP.tnzR4SNgzUnPCIB1fFa16QHaLH?pid=Api&P=0&h=180'
-  }];
-
+    this.peliculasService.obtenerLandingPage().subscribe(landingPage => {
+      this.peliculaEnCines = landingPage.enCines;
+      this.peliculasProximosEstrenos = landingPage.proximosEstrenos;
+    })
     }
-  peliculaEnCines : any;
-  peliculasProximosEstrenos =[];
+  peliculaEnCines : PeliculaDTO[];
+  peliculasProximosEstrenos : PeliculaDTO[];
 
   //Gif 2: Proximos Estrenos
     /*setTimeout(() =>{
