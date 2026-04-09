@@ -9,7 +9,7 @@ namespace back_end.Controllers
 {
     [ApiController]
     [Route("api/peliculas")]
-    public class PeliculasController:ControllerBase
+    public class PeliculasController : ControllerBase
     {
         private readonly ApplicationDBContext context;
         private readonly IMapper mapper;
@@ -49,7 +49,7 @@ namespace back_end.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<PeliculaDTO>> Get(int id) 
+        public async Task<ActionResult<PeliculaDTO>> Get(int id)
         {
             var pelicula = await context.Peliculas
                 .Include(x => x.PeliculasGeneros).ThenInclude(x => x.Genero)
@@ -57,7 +57,7 @@ namespace back_end.Controllers
                 .Include(x => x.PeliculasCines).ThenInclude(x => x.Cine)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if(pelicula == null) { return NotFound(); }
+            if (pelicula == null) { return NotFound(); }
 
             var dto = mapper.Map<PeliculaDTO>(pelicula);
             dto.Actores = dto.Actores.OrderBy(x => x.Orden).ToList();
@@ -70,15 +70,16 @@ namespace back_end.Controllers
         public async Task<ActionResult> Post([FromForm] PeliculaCreacionDTO peliculaCreacionDTO)
         {
             var pelicula = mapper.Map<Pelicula>(peliculaCreacionDTO);
-            if (peliculaCreacionDTO.Poster!= null)
+            if (peliculaCreacionDTO.Poster != null)
             {
-                pelicula.Poster= await almacenadorArchivos.GuardarArchivo(contenedor, peliculaCreacionDTO.Poster);
+                pelicula.Poster = await almacenadorArchivos.GuardarArchivo(contenedor, peliculaCreacionDTO.Poster);
             }
             EscribirOrdenActores(pelicula);
             context.Add(pelicula);
             await context.SaveChangesAsync();
             return NoContent();
         }
+
         [HttpGet("PostGet")]
         public async Task<ActionResult<PeliculasPostGetDTO>> PostGet()
         {
@@ -91,19 +92,94 @@ namespace back_end.Controllers
             return new PeliculasPostGetDTO() { Cines = cinesDTO, Generos = generosDTO };
         }
 
-        [HttpGet("PutGet")]
-        public async Task<ActionResult<>>
+        [HttpGet("PutGet/{id:int}")]
+        public async Task<ActionResult<PeliculasPutGetDTO>> PutGet(int id)
+        {
+            var peliculaActionResult = await Get(id);
+            if (peliculaActionResult.Result is NotFoundResult)
+            {
+                return NotFound();
+            }
+
+            var pelicula = peliculaActionResult.Value;
+
+            var generosSeleccionadosIds = pelicula.Generos.Select(x => x.Id).ToList();
+            var generosNoSeleccionados = await context.Generos
+                .Where(x => !generosSeleccionadosIds.Contains(x.Id))
+                .ToListAsync();
+
+            var cinesSeleccionadosIds = pelicula.Cines.Select(x => x.Id).ToList();
+            var cinesNoSeleccionados = await context.Cines
+                .Where(x => !cinesSeleccionadosIds.Contains(x.Id))
+                .ToListAsync();
+
+            var generosNoSeleccionadosDTO = mapper.Map<List<GeneroDTO>>(generosNoSeleccionados);
+            var cinesNoSeleccionadosDTO = mapper.Map<List<CineDTO>>(cinesNoSeleccionados);
+
+            var respuesta = new PeliculasPutGetDTO();
+            respuesta.Pelicula = pelicula;
+            respuesta.GenerosSeleccionados = pelicula.Generos;
+            respuesta.GenerosNoSeleccionados = generosNoSeleccionadosDTO;
+            respuesta.CinesSeleccionados = pelicula.Cines;
+            respuesta.CinesNoSeleccionados = cinesNoSeleccionadosDTO;
+            respuesta.Actores = pelicula.Actores;
+
+            return respuesta;
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int id, [FromForm] PeliculaCreacionDTO peliculaCreacionDTO)
+        {
+            var pelicula = await context.Peliculas
+                .Include(x => x.PeliculasActores)
+                .Include(x => x.PeliculasGeneros)
+                .Include(x => x.PeliculasCines)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (pelicula == null)
+            {
+                return NotFound();
+            }
+
+            // === LA SOLUCIÓN ===
+            // 1. Le decimos a Entity Framework que borre las relaciones de la base de datos
+            if (pelicula.PeliculasActores != null) context.RemoveRange(pelicula.PeliculasActores);
+            if (pelicula.PeliculasGeneros != null) context.RemoveRange(pelicula.PeliculasGeneros);
+            if (pelicula.PeliculasCines != null) context.RemoveRange(pelicula.PeliculasCines);
+
+            // 2. VACIAMOS las listas en memoria para que AutoMapper no intente reciclar
+            // las entidades viejas y modificar sus llaves primarias (lo que causaba el error).
+            pelicula.PeliculasActores?.Clear();
+            pelicula.PeliculasGeneros?.Clear();
+            pelicula.PeliculasCines?.Clear();
+            // ===================
+
+            // Ahora AutoMapper creará relaciones totalmente nuevas
+            pelicula = mapper.Map(peliculaCreacionDTO, pelicula);
+
+            // Por seguridad, forzamos que el ID de la película siga siendo el mismo de la ruta
+            pelicula.Id = id;
+
+            if (peliculaCreacionDTO.Poster != null)
+            {
+                pelicula.Poster = await almacenadorArchivos.EditarArchivo(contenedor, peliculaCreacionDTO.Poster, pelicula.Poster);
+            }
+
+            EscribirOrdenActores(pelicula);
+
+            await context.SaveChangesAsync();
+            return NoContent();
+        }
 
         private void EscribirOrdenActores(Pelicula pelicula)
         {
-            if(pelicula.PeliculasActores != null)
+            if (pelicula.PeliculasActores != null)
             {
-                for(int i = 0; i < pelicula.PeliculasActores.Count; i++)
+                for (int i = 0; i < pelicula.PeliculasActores.Count; i++)
                 {
                     pelicula.PeliculasActores[i].Orden = i;
                 }
             }
         }
     }
-
 }
