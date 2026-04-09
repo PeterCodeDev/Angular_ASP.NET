@@ -28,12 +28,15 @@ export class AutocompleteActores implements OnInit{
   @ViewChild(MatTable) table: MatTable<any>;
 
   ngOnInit(): void {
-    this.control.valueChanges.subscribe(nombre => {
-      this.actoresService.obtenerPorNombre(nombre).subscribe(actores =>{
+  this.control.valueChanges.subscribe(nombre => {
+    // MAGIA: Solo buscar si el valor es un string (texto)
+    if (typeof nombre === 'string' && nombre) {
+      this.actoresService.obtenerPorNombre(nombre).subscribe(actores => {
         this.actoresAMostrar = actores;
-      })
-    })
-  }
+      });
+    }
+  });
+}
 
   optionSelected(event: MatAutocompleteSelectedEvent){
     console.log(event.option.value);

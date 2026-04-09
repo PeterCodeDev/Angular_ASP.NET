@@ -22,11 +22,13 @@ export class ActoresService {
     return this.http.get<actorDTO[]>(this.apiURL, {observe: 'response', params});
   }
 
-  public obtenerPorNombre(nombre:String):Observable<actorPeliculaDTO[]>{
-    const headers = new HttpHeaders('Content-Type: application/json');
-    return this.http.post<actorPeliculaDTO[]>(`${this.apiURL}/buscarPorNombre`,
-      JSON.stringify(nombre),{headers});
-  }
+  public obtenerPorNombre(nombre: string): Observable<actorPeliculaDTO[]> {
+  // OJO AQUÍ: Las llaves {} son obligatorias para que Angular envíe bien el header
+  const headers = new HttpHeaders({'Content-Type': 'application/json'});
+  
+  // Usamos JSON.stringify(nombre) para enviar "Tom" (con comillas)
+  return this.http.post<actorPeliculaDTO[]>(`${this.apiURL}/buscarPorNombre`, JSON.stringify(nombre), { headers });
+}
 
   // 👇 Exactamente como lo tiene el profesor
   public crear(actor: actorCreacionDTO) {

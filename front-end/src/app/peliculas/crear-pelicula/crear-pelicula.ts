@@ -19,6 +19,8 @@ export class CrearPelicula implements OnInit{
   constructor(private peliculasService: PeliculasService){
 
   }
+
+  errores: string[] =[];
   generosNoSeleccionados: MultipleSelectorModel[];
   cinesNoSeleccionados: MultipleSelectorModel[];
 

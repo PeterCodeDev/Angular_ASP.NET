@@ -29,7 +29,7 @@ export class PeliculasService {
     formData.append('trailer', pelicula.trailer);
     formData.append('enCines',String(pelicula.enCines));
     if(pelicula.fechaLanzamiento){
-      formData.append('fechaEstreno', formatearFecha(pelicula.fechaLanzamiento));
+      formData.append('fechaLanzamiento', formatearFecha(pelicula.fechaLanzamiento));
     }
 
     if(pelicula.poster){
