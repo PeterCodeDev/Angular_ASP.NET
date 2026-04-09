@@ -14,9 +14,8 @@ export class EditarPelicula implements OnInit{
   constructor(){
 
   }
-  modelo:PeliculaDTO={titulo: 'Spider-Man', trailer: 'abc', enCines:true, resumen:'cosa',
-    fechaLanzamiento:new Date(), poster:'https://tse4.mm.bing.net/th/id/OIP.Uob8CnJX4qmyZk-Xe7x-3AHaJQ?pid=Api&P=0&h=180'
-  }
+  modelo:PeliculaDTO;
+  
   ngOnInit(): void {
     
   }
