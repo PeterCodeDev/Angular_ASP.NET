@@ -4,6 +4,9 @@ import { ListadoGenerico } from "../../utilidades/listado-generico/listado-gener
 import { MaterialModule } from '../../material/material-module';
 import { RouterLink } from "@angular/router";
 import { PeliculaDTO } from '../peliculas';
+import Swal from 'sweetalert2';
+// 👇 Importamos el servicio de películas 👇
+import { PeliculasService } from '../peliculas.service'; 
 
 @Component({
   selector: 'app-listado-peliculas',
@@ -12,16 +15,47 @@ import { PeliculaDTO } from '../peliculas';
   templateUrl: './listado-peliculas.html',
   styleUrl: './listado-peliculas.css',
 })
-export class ListadoPeliculas implements OnInit{
+export class ListadoPeliculas implements OnInit {
 
-  constructor(){}
-    @Input()
-    peliculas: PeliculaDTO[];
-
-  ngOnInit(): void {
+  // 👇 Inyectamos el servicio en el constructor 👇
+  constructor(private peliculasService: PeliculasService) {} 
   
-  }
-  remove(indicePelicula: number): void{
-    this.peliculas.splice(indicePelicula,1);
+  @Input()
+  peliculas: PeliculaDTO[];
+
+  ngOnInit(): void {}
+
+  borrar(id: number) {
+    Swal.fire({
+      title: 'Confirmación',
+      text: '¿Estás seguro que deseas borrar la película?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        
+      if (result.isConfirmed) {
+        // 1. Usamos PeliculasService (no cinesService)
+        this.peliculasService.borrar(id).subscribe({
+          next: () => {
+            // 2. Alerta de éxito
+            Swal.fire('¡Borrado!', 'La película ha sido eliminada correctamente.', 'success');
+              
+            // 3. Removemos la película visualmente de la lista actual (sin recargar la página)
+            const indice = this.peliculas.findIndex(p => p.id === id);
+            if (indice !== -1) {
+               this.peliculas.splice(indice, 1);
+            }
+          },
+          error: (error) => {
+            console.error(error);
+            Swal.fire('Error', 'Hubo un problema al intentar borrar la película.', 'error');
+          }
+        });
+      }
+    });
   }
 }

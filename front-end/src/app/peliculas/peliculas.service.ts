@@ -64,6 +64,10 @@ export class PeliculasService {
     return this.http.post<number>(this.apiURL, formData);
   }
 
+  public borrar(id: number) {
+  return this.http.delete(`${this.apiURL}/${id}`);
+}
+
   public editar(id:number , pelicula: PeliculaCreacionDTO){
     const formData = this.ConstruirFormData(pelicula);
     return this.http.put(`${this.apiURL}/${id}`, formData);
