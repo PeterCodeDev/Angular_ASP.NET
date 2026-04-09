@@ -7,14 +7,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace back_end.Controllers
 {
+
     [Route("api/actores")]
     [ApiController]
     public class ActoresController : ControllerBase
     {
         private readonly ApplicationDBContext context;
         private readonly IMapper mapper;
-        private readonly IAlmacenadorArchivos almacenadorArchivos; // 1. Añadimos el servicio
-        private readonly string contenedor = "actores"; // 2. Definimos el nombre de la carpeta
+        private readonly IAlmacenadorArchivos almacenadorArchivos;
+        private readonly string contenedor = "actores";
 
         public ActoresController(ApplicationDBContext context, IMapper mapper, IAlmacenadorArchivos almacenadorArchivos)
         {
@@ -33,17 +34,27 @@ namespace back_end.Controllers
         }
 
         [HttpPost]
-        // AQUÍ ESTÁ LA CLAVE: Volvemos a [FromBody] como en el tutorial
         public async Task<ActionResult> Post([FromForm] ActorCreacionDTO actorCreacionDTO)
         {
             var actor = mapper.Map<Actor>(actorCreacionDTO);
-            if(actorCreacionDTO.Foto != null)
+            if (actorCreacionDTO.Foto != null)
             {
                 actor.Foto = await almacenadorArchivos.GuardarArchivo(contenedor, actorCreacionDTO.Foto);
             }
             context.Add(actor);
             await context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpPost("buscarPorNombre")]
+        public async Task<ActionResult<List<PeliculaActorDTO>>> BuscarPorNombre([FromBody] string nombre)
+        {
+            if (string.IsNullOrWhiteSpace(nombre)) { return new List<PeliculaActorDTO>(); }
+            return await context.Actores
+                .Where(x => x.Nombre.Contains(nombre))
+                .Select(x => new PeliculaActorDTO { Id = x.Id, Nombre = x.Nombre, Foto = x.Foto })
+                .Take(5)
+                .ToListAsync();
         }
 
         [HttpDelete("{id:int}")]
@@ -55,7 +66,7 @@ namespace back_end.Controllers
             {
                 return NoContent();
             }
-            context.Remove(new Genero() { Id = id });
+            context.Remove(new Actor() { Id = id });
             await context.SaveChangesAsync();
             return NoContent();
         }
