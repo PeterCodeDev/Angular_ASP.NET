@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PeliculasService } from '../peliculas.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PeliculaDTO } from '../peliculas';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CoordenadaConMensaje } from '../../utilidades/mapa/coordenada';
+import { MaterialModule } from '../../material/material-module';
 
 @Component({
   selector: 'app-detalle-pelicula',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink,MaterialModule],
   templateUrl: './detalle-pelicula.html',
   styleUrl: './detalle-pelicula.css',
 })

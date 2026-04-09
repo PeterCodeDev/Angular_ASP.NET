@@ -17,12 +17,13 @@ import {MatTableModule} from '@angular/material/table'
 import {MatPaginatorModule} from '@angular/material/paginator'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import {provideSweetAlert2} from '@sweetalert2/ngx-sweetalert2'
+import {MatChipsModule} from '@angular/material/chips'
 
 @NgModule({
   providers:[provideSweetAlert2()],
   declarations: [],
   exports:[
-    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule,MatAutocompleteModule,MatTableModule,MatPaginatorModule,MatProgressSpinnerModule,
+    MatToolbarModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule,MatSelectModule,MatDatepickerModule, MatLineModule,MatNativeDateModule, MatTabsModule, MatCheckboxModule,MatAutocompleteModule,MatTableModule,MatPaginatorModule,MatProgressSpinnerModule,MatChipsModule
   ],
   imports: [CommonModule],
 })
